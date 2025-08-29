@@ -1,0 +1,42 @@
+<odoo>
+    <record id="waran_charge_view_tree" model="ir.ui.view">
+        <field name="name">waran.charge.tree</field>
+        <field name="model">waran.charge</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_id"/>
+                <field name="item_type"/>
+                <field name="total"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="waran_charge_view_form" model="ir.ui.view">
+        <field name="name">waran.charge.form</field>
+        <field name="model">waran.charge</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="patient_id"/>
+                        <field name="encounter_id"/>
+                        <field name="item_type"/>
+                        <field name="item_ref"/>
+                        <field name="qty"/>
+                        <field name="unit_price"/>
+                        <field name="total" readonly="1"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_mark_paid" type="object" string="Mark Paid" states="draft" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="waran_charge_action" model="ir.actions.act_window">
+        <field name="name">Charges</field>
+        <field name="res_model">waran.charge</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

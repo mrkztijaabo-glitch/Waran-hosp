@@ -1,0 +1,5 @@
+<odoo>
+    <menuitem id="waran_menu_billing" name="Billing" parent="waran_his_core.waran_menu_root"/>
+    <menuitem id="waran_menu_price_list" name="Price List" parent="waran_menu_billing" action="waran_price_list_action"/>
+    <menuitem id="waran_menu_charge" name="Charges" parent="waran_menu_billing" action="waran_charge_action"/>
+</odoo>

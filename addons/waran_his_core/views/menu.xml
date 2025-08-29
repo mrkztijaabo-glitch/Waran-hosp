@@ -1,0 +1,11 @@
+<odoo>
+    <menuitem id="waran_menu_root" name="Waran-Hosp"/>
+    <menuitem id="waran_menu_registration" name="Registration" parent="waran_menu_root"/>
+    <menuitem id="waran_menu_clinical" name="Clinical" parent="waran_menu_root"/>
+    <menuitem id="waran_menu_settings" name="Settings" parent="waran_menu_root"/>
+
+    <menuitem id="waran_menu_patient" name="Patients" parent="waran_menu_registration" action="waran_patient_action"/>
+    <menuitem id="waran_menu_appointment" name="Appointments" parent="waran_menu_registration" action="waran_appointment_action"/>
+    <menuitem id="waran_menu_encounter" name="Encounters" parent="waran_menu_clinical" action="waran_encounter_action"/>
+    <menuitem id="waran_menu_diagnosis" name="Diagnoses" parent="waran_menu_settings" action="waran_diagnosis_action"/>
+</odoo>

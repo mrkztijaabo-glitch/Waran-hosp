@@ -1,0 +1,12 @@
+<odoo>
+    <record id="ref_cbc" model="waran.lab_reference">
+        <field name="test_type">cbc</field>
+        <field name="low">4</field>
+        <field name="high">10</field>
+    </record>
+    <record id="ref_cmp" model="waran.lab_reference">
+        <field name="test_type">cmp</field>
+        <field name="low">70</field>
+        <field name="high">110</field>
+    </record>
+</odoo>

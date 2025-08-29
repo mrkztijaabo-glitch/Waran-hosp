@@ -1,0 +1,41 @@
+<odoo>
+    <record id="waran_lab_result_view_tree" model="ir.ui.view">
+        <field name="name">waran.lab_result.tree</field>
+        <field name="model">waran.lab_result</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="lab_order_id"/>
+                <field name="result_value"/>
+                <field name="unit"/>
+                <field name="flag"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="waran_lab_result_view_form" model="ir.ui.view">
+        <field name="name">waran.lab_result.form</field>
+        <field name="model">waran.lab_result</field>
+        <field name="arch" type="xml">
+            <form string="Lab Result">
+                <sheet>
+                    <group>
+                        <field name="lab_order_id"/>
+                        <field name="result_value"/>
+                        <field name="unit"/>
+                        <field name="normal_range" readonly="1"/>
+                        <field name="flag" readonly="1"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_validate" type="object" string="Validate" states="draft" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="waran_lab_result_action" model="ir.actions.act_window">
+        <field name="name">Lab Results</field>
+        <field name="res_model">waran.lab_result</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

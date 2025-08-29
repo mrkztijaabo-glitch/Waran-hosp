@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lab_order_labtech,access_lab_order_labtech,model_waran_lab_order,waran_his_core.group_waran_labtech,1,1,1,0
+access_lab_result_labtech,access_lab_result_labtech,model_waran_lab_result,waran_his_core.group_waran_labtech,1,1,1,0

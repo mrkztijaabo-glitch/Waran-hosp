@@ -1,0 +1,35 @@
+<odoo>
+    <record id="waran_clinical_note_view_tree" model="ir.ui.view">
+        <field name="name">waran.clinical_note.tree</field>
+        <field name="model">waran.clinical_note</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="encounter_id"/>
+                <field name="diagnosis_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="waran_clinical_note_view_form" model="ir.ui.view">
+        <field name="name">waran.clinical_note.form</field>
+        <field name="model">waran.clinical_note</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="encounter_id"/>
+                        <field name="subjective"/>
+                        <field name="objective"/>
+                        <field name="assessment"/>
+                        <field name="plan"/>
+                        <field name="diagnosis_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="waran_clinical_note_action" model="ir.actions.act_window">
+        <field name="name">Clinical Notes</field>
+        <field name="res_model">waran.clinical_note</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

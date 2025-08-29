@@ -1,0 +1,34 @@
+<odoo>
+    <record id="waran_price_list_view_tree" model="ir.ui.view">
+        <field name="name">waran.price_list.tree</field>
+        <field name="model">waran.price_list</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="department"/>
+                <field name="item_type"/>
+                <field name="price"/>
+            </tree>
+        </field>
+    </record>
+    <record id="waran_price_list_view_form" model="ir.ui.view">
+        <field name="name">waran.price_list.form</field>
+        <field name="model">waran.price_list</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="department"/>
+                        <field name="item_type"/>
+                        <field name="item_ref"/>
+                        <field name="price"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="waran_price_list_action" model="ir.actions.act_window">
+        <field name="name">Price List</field>
+        <field name="res_model">waran.price_list</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

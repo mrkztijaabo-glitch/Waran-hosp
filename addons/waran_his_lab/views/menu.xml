@@ -1,0 +1,5 @@
+<odoo>
+    <menuitem id="waran_menu_lab" name="Lab" parent="waran_his_core.waran_menu_root"/>
+    <menuitem id="waran_menu_lab_orders" name="Lab Orders" parent="waran_menu_lab" action="waran_lab_order_action"/>
+    <menuitem id="waran_menu_lab_results" name="Lab Results" parent="waran_menu_lab" action="waran_lab_result_action"/>
+</odoo>

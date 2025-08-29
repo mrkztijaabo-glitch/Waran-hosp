@@ -1,0 +1,8 @@
+<odoo>
+    <record id="lab_order_rule" model="ir.rule">
+        <field name="name">Lab order rule</field>
+        <field name="model_id" ref="model_waran_lab_order"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('waran_his_core.group_waran_labtech'))]"/>
+    </record>
+</odoo>

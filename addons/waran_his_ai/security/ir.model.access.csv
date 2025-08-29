@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_audit_admin,access_ai_audit_admin,model_waran_ai_audit,waran_his_core.group_waran_admin,1,1,1,0

@@ -1,0 +1,6 @@
+{
+    "name": "Waran-Hosp",
+    "forwardPorts": [10069],
+    "postCreateCommand": "docker compose -f docker/compose.yml up -d && echo 'Odoo running on port 10069'",
+    "features": {}
+}

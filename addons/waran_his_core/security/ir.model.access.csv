@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_patient_registration,access_patient_registration,model_waran_patient,group_waran_registration,1,1,1,0
+access_patient_doctor,access_patient_doctor,model_waran_patient,group_waran_doctor,1,0,0,0
+access_appointment_registration,access_appointment_registration,model_waran_appointment,group_waran_registration,1,1,1,0
+access_encounter_doctor,access_encounter_doctor,model_waran_encounter,group_waran_doctor,1,1,1,0
+access_vital_nurse,access_vital_nurse,model_waran_vital,group_waran_nurse,1,1,1,0
+access_clinical_note_doctor,access_clinical_note_doctor,model_waran_clinical_note,group_waran_doctor,1,1,1,0
+access_diagnosis_doctor,access_diagnosis_doctor,model_waran_diagnosis,group_waran_doctor,1,1,1,0

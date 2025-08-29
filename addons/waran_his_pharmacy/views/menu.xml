@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem id="waran_menu_pharmacy" name="Pharmacy" parent="waran_his_core.waran_menu_root"/>
+    <menuitem id="waran_menu_formulary" name="Formulary" parent="waran_menu_pharmacy" action="waran_formulary_action"/>
+    <menuitem id="waran_menu_prescription" name="Prescriptions" parent="waran_menu_pharmacy" action="waran_prescription_action"/>
+    <menuitem id="waran_menu_dispense" name="Dispense" parent="waran_menu_pharmacy" action="waran_dispense_action"/>
+</odoo>

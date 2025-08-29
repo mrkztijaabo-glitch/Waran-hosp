@@ -1,0 +1,38 @@
+<odoo>
+    <record id="waran_appointment_view_tree" model="ir.ui.view">
+        <field name="name">waran.appointment.tree</field>
+        <field name="model">waran.appointment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_id"/>
+                <field name="provider_id"/>
+                <field name="department"/>
+                <field name="start"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    <record id="waran_appointment_view_form" model="ir.ui.view">
+        <field name="name">waran.appointment.form</field>
+        <field name="model">waran.appointment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="patient_id"/>
+                        <field name="provider_id"/>
+                        <field name="department"/>
+                        <field name="start"/>
+                        <field name="end"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="waran_appointment_action" model="ir.actions.act_window">
+        <field name="name">Appointments</field>
+        <field name="res_model">waran.appointment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

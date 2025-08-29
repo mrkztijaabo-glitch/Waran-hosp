@@ -1,0 +1,41 @@
+<odoo>
+    <record id="waran_encounter_view_tree" model="ir.ui.view">
+        <field name="name">waran.encounter.tree</field>
+        <field name="model">waran.encounter</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="patient_id"/>
+                <field name="provider_id"/>
+                <field name="date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="waran_encounter_view_form" model="ir.ui.view">
+        <field name="name">waran.encounter.form</field>
+        <field name="model">waran.encounter</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_ai_suggest" type="object" string="AI Suggestion" class="oe_stat_button"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-warning">AI is decision-support only.</div>
+                    <group>
+                        <field name="patient_id"/>
+                        <field name="provider_id"/>
+                        <field name="date"/>
+                        <field name="reason"/>
+                        <field name="appointment_id"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="waran_encounter_action" model="ir.actions.act_window">
+        <field name="name">Encounters</field>
+        <field name="res_model">waran.encounter</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
