@@ -26,7 +26,9 @@ jobs:
         run: |
           for i in {1..30}; do
             cid=$(docker compose ps -q db)
-            status=$(docker inspect --format='{{.State.Health.Status}}' "$cid" 2>/dev/null || echo starting)
+            status=$(docker inspect \
+              --format='{{.State.Health.Status}}' "$cid" 2>/dev/null \
+              || echo starting)
             echo "db health: $status"
             [ "$status" = "healthy" ] && exit 0
             docker compose logs db --tail=50 || true
@@ -35,6 +37,15 @@ jobs:
           echo "::error::DB never became healthy"
           docker compose logs db
           exit 1
+      - name: Initialize Odoo database
+        working-directory: docker
+        run: |
+          # Run Odoo once in init mode to create DB schema
+          docker compose run --rm odoo \
+            odoo -d ${POSTGRES_DB:-odoo} -i base --stop-after-init \
+            --db_host=db \
+            --db_user=${POSTGRES_USER:-odoo} \
+            --db_password=${POSTGRES_PASSWORD:-odoo}
       - name: Smoke check Odoo
         working-directory: docker
         run: |
