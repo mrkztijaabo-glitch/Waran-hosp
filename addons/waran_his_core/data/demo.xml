@@ -66,7 +66,6 @@
         <field name="plan">P</field>
         <field name="diagnosis_id" ref="diag_demo_1"/>
     </record>
-</odoo>
     <!-- Lab order and result -->
     <record id="lab_order_demo_1" model="waran.lab_order">
         <field name="patient_id" ref="patient_demo_1"/>
