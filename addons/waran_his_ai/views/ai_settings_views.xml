@@ -1,0 +1,21 @@
+<odoo>
+    <record id="waran_ai_settings_view" model="ir.ui.view">
+        <field name="name">waran.ai.settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="ai_enabled"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="waran_ai_settings_action" model="ir.actions.act_window">
+        <field name="name">AI Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+</odoo>

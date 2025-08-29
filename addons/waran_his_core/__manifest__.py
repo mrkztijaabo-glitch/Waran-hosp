@@ -1,0 +1,22 @@
+{
+    'name': 'Waran HIS Core',
+    'version': '1.0',
+    'summary': 'Core patient management',
+    'author': 'Waran-Hosp',
+    'category': 'Healthcare',
+    'depends': ['base'],
+    'data': [
+        'security/waran_groups.xml',
+        'security/ir.model.access.csv',
+        'data/sequence.xml',
+        'views/menu.xml',
+        'views/patient_views.xml',
+        'views/appointment_views.xml',
+        'views/encounter_views.xml',
+        'views/clinical_note_views.xml',
+        'views/diagnosis_views.xml',
+        'data/demo.xml',
+    ],
+    'demo': [],
+    'application': True,
+}

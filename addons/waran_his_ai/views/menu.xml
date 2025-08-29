@@ -1,0 +1,3 @@
+<odoo>
+    <menuitem id="waran_menu_ai" name="AI Settings" parent="waran_his_core.waran_menu_settings" action="waran_ai_settings_action"/>
+</odoo>

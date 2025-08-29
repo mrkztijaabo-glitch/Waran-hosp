@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_price_list_admin,access_price_list_admin,model_waran_price_list,waran_his_core.group_waran_admin,1,1,1,1
+access_charge_cashier,access_charge_cashier,model_waran_charge,waran_his_core.group_waran_cashier,1,1,1,0

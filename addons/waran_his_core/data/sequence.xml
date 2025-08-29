@@ -1,0 +1,8 @@
+<odoo>
+    <record id="seq_waran_patient" model="ir.sequence">
+        <field name="name">Patient ID</field>
+        <field name="code">waran.patient</field>
+        <field name="prefix">WAR-P-</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

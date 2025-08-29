@@ -1,0 +1,40 @@
+<odoo>
+    <record id="waran_patient_view_tree" model="ir.ui.view">
+        <field name="name">waran.patient.tree</field>
+        <field name="model">waran.patient</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="internal_id"/>
+                <field name="name"/>
+                <field name="sex"/>
+                <field name="dob"/>
+            </tree>
+        </field>
+    </record>
+    <record id="waran_patient_view_form" model="ir.ui.view">
+        <field name="name">waran.patient.form</field>
+        <field name="model">waran.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sex"/>
+                        <field name="dob"/>
+                        <field name="phone"/>
+                        <field name="address"/>
+                        <field name="internal_id"/>
+                        <field name="national_id"/>
+                        <field name="next_of_kin"/>
+                        <field name="allergies"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="waran_patient_action" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">waran.patient</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

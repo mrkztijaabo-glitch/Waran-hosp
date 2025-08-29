@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_formulary_pharmacist,access_formulary_pharmacist,model_waran_formulary,waran_his_core.group_waran_pharmacist,1,1,1,0
+access_prescription_doctor,access_prescription_doctor,model_waran_prescription,waran_his_core.group_waran_doctor,1,1,1,0
+access_dispense_pharmacist,access_dispense_pharmacist,model_waran_dispense,waran_his_core.group_waran_pharmacist,1,1,1,0
