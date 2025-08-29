@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-  <!-- Root application menu -->
+  <!-- Root menu -->
   <menuitem id="waran_menu_root" name="Waran-Hosp" sequence="5"/>
-
-  <!-- Registration section -->
   <menuitem id="waran_menu_registration" name="Registration" parent="waran_menu_root" sequence="10"/>
 
-  <!-- ACTION: open Patients (must be defined BEFORE the menu that uses it) -->
+  <!-- ACTION (must exist before menu uses it) -->
   <record id="waran_patient_action" model="ir.actions.act_window">
     <field name="name">Patients</field>
     <field name="res_model">waran.patient</field>
     <field name="view_mode">tree,form</field>
-    <!-- Optional: context, domain can be added later -->
   </record>
 
-  <!-- Menu that uses the action above -->
+  <!-- Menu uses the action above -->
   <menuitem id="waran_menu_patient"
             name="Patients"
             parent="waran_menu_registration"
-            action="waran_patient_action"
+            action="waran_his_core.waran_patient_action"
             sequence="10"/>
-
-  <!-- You can add more sections later (Appointments, Clinical, etc.) -->
-
 </odoo>
-
