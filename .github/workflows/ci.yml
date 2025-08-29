@@ -5,6 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Prepare env
+        run: |
+          cp docker/.env.example docker/.env
+          grep -E 'POSTGRES_|ODOO_|OPENAI_' docker/.env || true
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -12,11 +16,36 @@ jobs:
       - name: Lint structure
         run: |
           python -m compileall addons || true
-      - name: Docker Compose
+      - name: Docker Compose up
+        working-directory: docker
         run: |
-          docker compose -f docker/compose.yml up -d
-          sleep 30
-          curl -f http://localhost:10069/web/login
+          docker compose up -d
+          docker compose ps
+      - name: Wait for db to be healthy
+        working-directory: docker
+        run: |
+          for i in {1..30}; do
+            cid=$(docker compose ps -q db)
+            status=$(docker inspect --format='{{.State.Health.Status}}' "$cid" 2>/dev/null || echo starting)
+            echo "db health: $status"
+            [ "$status" = "healthy" ] && exit 0
+            docker compose logs db --tail=50 || true
+            sleep 5
+          done
+          echo "::error::DB never became healthy"
+          docker compose logs db
+          exit 1
+      - name: Smoke check Odoo
+        working-directory: docker
+        run: |
+          for i in {1..60}; do
+            if curl -fsS http://localhost:10069/web/login >/dev/null; then
+              echo "Odoo is reachable"; exit 0
+            fi
+            sleep 5
+          done
+          docker compose logs odoo
+          exit 1
       - name: Archive addons
         run: tar czf addons.tgz addons
         if: always()
