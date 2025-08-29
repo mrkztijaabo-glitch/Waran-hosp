@@ -1,113 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
         <!-- Users -->
-    <record id="user_provider_1" model="res.users">
-        <field name="name">Dr. Strange</field>
-        <field name="login">dr1</field>
-        <field name="groups_id" eval="[(4, ref('group_waran_doctor'))]"/>
-    </record>
-    <record id="user_provider_2" model="res.users">
-        <field name="name">Nurse Joy</field>
-        <field name="login">nurse1</field>
-        <field name="groups_id" eval="[(4, ref('group_waran_nurse'))]"/>
-    </record>
+        <record id="user_provider_1" model="res.users">
+            <field name="name">Dr. Strange</field>
+            <field name="login">dr1</field>
+            <field name="groups_id" eval="[(4, ref('group_waran_doctor'))]"/>
+        </record>
+        <record id="user_provider_2" model="res.users">
+            <field name="name">Nurse Joy</field>
+            <field name="login">nurse1</field>
+            <field name="groups_id" eval="[(4, ref('group_waran_nurse'))]"/>
+        </record>
 
         <!-- Patients -->
-    <record id="patient_demo_1" model="waran.patient">
-        <field name="name">John Doe</field>
-        <field name="sex">m</field>
-    </record>
-    <record id="patient_demo_2" model="waran.patient">
-        <field name="name">Jane Roe</field>
-        <field name="sex">f</field>
-    </record>
-    <record id="patient_demo_3" model="waran.patient">
-        <field name="name">Jim Poe</field>
-        <field name="sex">m</field>
-    </record>
+        <record id="patient_demo_1" model="waran.patient">
+            <field name="name">John Doe</field>
+            <field name="sex">m</field>
+        </record>
+        <record id="patient_demo_2" model="waran.patient">
+            <field name="name">Jane Roe</field>
+            <field name="sex">f</field>
+        </record>
+        <record id="patient_demo_3" model="waran.patient">
+            <field name="name">Jim Poe</field>
+            <field name="sex">m</field>
+        </record>
 
         <!-- Appointments -->
-    <record id="appt_demo_1" model="waran.appointment">
-        <field name="patient_id" ref="patient_demo_1"/>
-        <field name="provider_id" ref="user_provider_1"/>
-        <field name="start" eval="(DateTime.now())"/>
-    </record>
-    <record id="appt_demo_2" model="waran.appointment">
-        <field name="patient_id" ref="patient_demo_2"/>
-        <field name="provider_id" ref="user_provider_1"/>
-        <field name="start" eval="(DateTime.now())"/>
-    </record>
-    <record id="appt_demo_3" model="waran.appointment">
-        <field name="patient_id" ref="patient_demo_3"/>
-        <field name="provider_id" ref="user_provider_1"/>
-        <field name="start" eval="(DateTime.now())"/>
-    </record>
+        <record id="appt_demo_1" model="waran.appointment">
+            <field name="patient_id" ref="patient_demo_1"/>
+            <field name="provider_id" ref="user_provider_1"/>
+            <field name="start" eval="(DateTime.now())"/>
+        </record>
+        <record id="appt_demo_2" model="waran.appointment">
+            <field name="patient_id" ref="patient_demo_2"/>
+            <field name="provider_id" ref="user_provider_1"/>
+            <field name="start" eval="(DateTime.now())"/>
+        </record>
+        <record id="appt_demo_3" model="waran.appointment">
+            <field name="patient_id" ref="patient_demo_3"/>
+            <field name="provider_id" ref="user_provider_1"/>
+            <field name="start" eval="(DateTime.now())"/>
+        </record>
 
         <!-- Encounter -->
-    <record id="encounter_demo_1" model="waran.encounter">
-        <field name="patient_id" ref="patient_demo_1"/>
-        <field name="provider_id" ref="user_provider_1"/>
-        <field name="reason">Checkup</field>
-        <field name="appointment_id" ref="appt_demo_1"/>
-    </record>
-    <record id="vital_demo_1" model="waran.vital">
-        <field name="encounter_id" ref="encounter_demo_1"/>
-        <field name="temp">37</field>
-        <field name="pulse">80</field>
-    </record>
-    <record id="diag_demo_1" model="waran.diagnosis">
-        <field name="name">Fever</field>
-        <field name="code">R50.9</field>
-    </record>
-    <record id="note_demo_1" model="waran.clinical_note">
-        <field name="encounter_id" ref="encounter_demo_1"/>
-        <field name="subjective">S</field>
-        <field name="objective">O</field>
-        <field name="assessment">A</field>
-        <field name="plan">P</field>
-        <field name="diagnosis_id" ref="diag_demo_1"/>
-    </record>
+        <record id="encounter_demo_1" model="waran.encounter">
+            <field name="patient_id" ref="patient_demo_1"/>
+            <field name="provider_id" ref="user_provider_1"/>
+            <field name="reason">Checkup</field>
+            <field name="appointment_id" ref="appt_demo_1"/>
+        </record>
+        <record id="vital_demo_1" model="waran.vital">
+            <field name="encounter_id" ref="encounter_demo_1"/>
+            <field name="temp">37</field>
+            <field name="pulse">80</field>
+        </record>
+        <record id="diag_demo_1" model="waran.diagnosis">
+            <field name="name">Fever</field>
+            <field name="code">R50.9</field>
+        </record>
+        <record id="note_demo_1" model="waran.clinical_note">
+            <field name="encounter_id" ref="encounter_demo_1"/>
+            <field name="subjective">S</field>
+            <field name="objective">O</field>
+            <field name="assessment">A</field>
+            <field name="plan">P</field>
+            <field name="diagnosis_id" ref="diag_demo_1"/>
+        </record>
+
         <!-- Lab order and result -->
-    <record id="lab_order_demo_1" model="waran.lab_order">
-        <field name="patient_id" ref="patient_demo_1"/>
-        <field name="test_type">cbc</field>
-        <field name="ordered_by" ref="user_provider_1"/>
-    </record>
-    <record id="lab_result_demo_1" model="waran.lab_result">
-        <field name="lab_order_id" ref="lab_order_demo_1"/>
-        <field name="result_value">5</field>
-        <field name="unit">10^9/L</field>
-    </record>
+        <record id="lab_order_demo_1" model="waran.lab_order">
+            <field name="patient_id" ref="patient_demo_1"/>
+            <field name="test_type">cbc</field>
+            <field name="ordered_by" ref="user_provider_1"/>
+        </record>
+        <record id="lab_result_demo_1" model="waran.lab_result">
+            <field name="lab_order_id" ref="lab_order_demo_1"/>
+            <field name="result_value">5</field>
+            <field name="unit">10^9/L</field>
+        </record>
 
         <!-- Prescription and dispense -->
-    <record id="formulary_demo_1" model="waran.formulary">
-        <field name="drug_name">Paracetamol</field>
-        <field name="strength">500mg</field>
-        <field name="route">Oral</field>
-    </record>
-    <record id="prescription_demo_1" model="waran.prescription">
-        <field name="encounter_id" ref="encounter_demo_1"/>
-    </record>
-    <record id="prescription_line_demo_1" model="waran.prescription.line">
-        <field name="prescription_id" ref="prescription_demo_1"/>
-        <field name="drug_id" ref="formulary_demo_1"/>
-        <field name="dose">1 tab</field>
-        <field name="frequency">TID</field>
-    </record>
-    <record id="dispense_demo_1" model="waran.dispense">
-        <field name="prescription_id" ref="prescription_demo_1"/>
-        <field name="dispensed_by" ref="user_provider_2"/>
-        <field name="qty">10</field>
-    </record>
+        <record id="formulary_demo_1" model="waran.formulary">
+            <field name="drug_name">Paracetamol</field>
+            <field name="strength">500mg</field>
+            <field name="route">Oral</field>
+        </record>
+        <record id="prescription_demo_1" model="waran.prescription">
+            <field name="encounter_id" ref="encounter_demo_1"/>
+        </record>
+        <record id="prescription_line_demo_1" model="waran.prescription.line">
+            <field name="prescription_id" ref="prescription_demo_1"/>
+            <field name="drug_id" ref="formulary_demo_1"/>
+            <field name="dose">1 tab</field>
+            <field name="frequency">TID</field>
+        </record>
+        <record id="dispense_demo_1" model="waran.dispense">
+            <field name="prescription_id" ref="prescription_demo_1"/>
+            <field name="dispensed_by" ref="user_provider_2"/>
+            <field name="qty">10</field>
+        </record>
 
         <!-- Charge -->
         <record id="charge_demo_1" model="waran.charge">
-        <field name="patient_id" ref="patient_demo_1"/>
-        <field name="encounter_id" ref="encounter_demo_1"/>
-        <field name="item_type">visit</field>
-        <field name="qty">1</field>
-        <field name="unit_price">100</field>
-        <field name="state">posted</field>
+            <field name="patient_id" ref="patient_demo_1"/>
+            <field name="encounter_id" ref="encounter_demo_1"/>
+            <field name="item_type">visit</field>
+            <field name="qty">1</field>
+            <field name="unit_price">100</field>
+            <field name="state">posted</field>
         </record>
     </data>
 </odoo>
