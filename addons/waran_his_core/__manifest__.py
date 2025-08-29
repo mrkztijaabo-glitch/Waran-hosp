@@ -3,7 +3,8 @@
     'version': '1.0',
     'summary': 'Core patient management',
     'author': 'Waran-Hosp',
-    'category': 'Healthcare',
+    'license': 'LGPL-3',
+    'category': 'Medical',
     'depends': ['base'],
     'data': [
         'security/waran_groups.xml',
