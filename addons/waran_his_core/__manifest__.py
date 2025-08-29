@@ -15,8 +15,7 @@
         'views/clinical_note_views.xml',
         'views/diagnosis_views.xml',
         'views/menu.xml',
-        'data/demo.xml',
     ],
-    'demo': [],
+    'demo': ['data/demo.xml'],
     'application': True,
 }
