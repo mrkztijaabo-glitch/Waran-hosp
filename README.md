@@ -27,6 +27,13 @@ Set `OPENAI_API_KEY` in `docker/.env` to enable AI features.
 - Grant department access: `scripts/his_admin.sh grant-access cfwaran@gmail.com`
 - Upgrade all modules: `scripts/his_admin.sh upgrade-all`
 
+## Upgrade
+
+```bash
+cd /opt/Waran-hosp/docker
+docker compose exec odoo ./odoo-bin -d waranhosp -u waran_his_lab,waran_his_billing,waran_his_pharmacy
+```
+
 ## Modules
 - Core patient management and encounters
 - Laboratory orders and results

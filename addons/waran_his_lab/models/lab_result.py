@@ -3,7 +3,7 @@ from odoo import api, fields, models
 class LabResult(models.Model):
     _name = 'waran.lab_result'
     _description = 'Lab Result'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     lab_order_id = fields.Many2one('waran.lab_order', required=True)
     result_value = fields.Char()
