@@ -22,6 +22,8 @@ services:
       - PASSWORD=${POSTGRES_PASSWORD}
       - DB_NAME=${POSTGRES_DB}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LANG=C.UTF-8
+      - LC_ALL=C.UTF-8
     volumes:
       - odoo-data:/var/lib/odoo
       - ../addons:/mnt/extra-addons
