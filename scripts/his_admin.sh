@@ -28,6 +28,12 @@ install_modules() {
     --db_host=db --db_user="${POSTGRES_USER}" --db_password="${POSTGRES_PASSWORD}"
 }
 
+upgrade_all() {
+  docker compose run --rm odoo \
+    odoo -d "${ODOO_DB}" -u all --stop-after-init \
+    --db_host=db --db_user="${POSTGRES_USER}" --db_password="${POSTGRES_PASSWORD}"
+}
+
 set_password() {
   local login="$1"
   local password="$2"
@@ -79,16 +85,24 @@ Usage:
   scripts/his_admin.sh grant-access <login_or_email>
       -> grants all HIS department groups to that user
 
+  scripts/his_admin.sh upgrade-all
+      -> upgrades all installed modules and restarts Odoo
+
 Examples:
   scripts/his_admin.sh install-all
   scripts/his_admin.sh set-password admin admin123
   scripts/his_admin.sh grant-access cfwaran@gmail.com
+  scripts/his_admin.sh upgrade-all
 USAGE
 }
 
 case "${1:-}" in
   install-all)
     install_modules "waran_his_core,waran_his_lab,waran_his_pharmacy,waran_his_billing,waran_his_ai"
+    docker compose restart odoo
+    ;;
+  upgrade-all)
+    upgrade_all
     docker compose restart odoo
     ;;
   set-password)
