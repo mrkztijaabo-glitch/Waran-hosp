@@ -1,5 +1,13 @@
 <odoo>
-    <menuitem id="waran_menu_billing" name="Billing" parent="waran_his_core.waran_menu_root"/>
-    <menuitem id="waran_menu_price_list" name="Price List" parent="waran_menu_billing" action="waran_price_list_action"/>
-    <menuitem id="waran_menu_charge" name="Charges" parent="waran_menu_billing" action="waran_charge_action"/>
+    <record id="waran_billing_action" model="ir.actions.act_window">
+        <field name="name">Billing</field>
+        <field name="res_model">waran.billing</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="waran_menu_billing"
+              name="Billing"
+              parent="waran_his_core.waran_menu_root"
+              action="waran_his_billing.waran_billing_action"
+              sequence="20"/>
 </odoo>

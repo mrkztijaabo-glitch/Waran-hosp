@@ -1,15 +1,13 @@
 {
-    'name': 'Waran HIS Lab',
-    'version': '1.0',
-    'license': 'LGPL-3',
-    'category': 'Medical',
-    'depends': ['waran_his_core'],
-    'data': [
-        'security/ir.model.access.csv',
-        'security/lab_rules.xml',
-        'views/menu.xml',
-        'views/lab_order_views.xml',
-        'views/lab_result_views.xml',
-        'data/reference_ranges.xml',
+    "name": "Waran HIS Lab",
+    "version": "17.0.1.0.0",
+    "license": "LGPL-3",
+    "category": "Healthcare",
+    "depends": ["waran_his_core"],
+    "data": [
+        "security/ir.model.access.csv",
+        "views/menu.xml",
     ],
+    "installable": True,
+    "application": False,
 }

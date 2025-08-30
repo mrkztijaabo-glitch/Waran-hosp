@@ -1,6 +1,13 @@
 <odoo>
-    <menuitem id="waran_menu_pharmacy" name="Pharmacy" parent="waran_his_core.waran_menu_root"/>
-    <menuitem id="waran_menu_formulary" name="Formulary" parent="waran_menu_pharmacy" action="waran_formulary_action"/>
-    <menuitem id="waran_menu_prescription" name="Prescriptions" parent="waran_menu_pharmacy" action="waran_prescription_action"/>
-    <menuitem id="waran_menu_dispense" name="Dispense" parent="waran_menu_pharmacy" action="waran_dispense_action"/>
+    <record id="waran_pharmacy_order_action" model="ir.actions.act_window">
+        <field name="name">Pharmacy Orders</field>
+        <field name="res_model">waran.pharmacy.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="waran_menu_pharmacy"
+              name="Pharmacy"
+              parent="waran_his_core.waran_menu_root"
+              action="waran_his_pharmacy.waran_pharmacy_order_action"
+              sequence="40"/>
 </odoo>
