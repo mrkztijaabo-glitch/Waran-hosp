@@ -3,12 +3,13 @@ set -euo pipefail
 
 # --- Config from docker/.env with sensible defaults ---
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT_DIR/docker"
+ENV_FILE="$ROOT_DIR/docker/.env"
+if [ -f "$ENV_FILE" ]; then set -a; . "$ENV_FILE"; set +a; fi
+: "${ODOO_DB:=${POSTGRES_DB:-odoo}}"
 
-POSTGRES_DB="${POSTGRES_DB:-${POSTGRES_DB:-odoo}}"
-POSTGRES_USER="${POSTGRES_USER:-${POSTGRES_USER:-odoo}}"
-POSTGRES_PASSWORD="${POSTGRES_PASSWORD:-${POSTGRES_PASSWORD:-odoo}}"
-ODOO_DB="${POSTGRES_DB}"
+cd "$ROOT_DIR/docker"
+POSTGRES_USER="${POSTGRES_USER:-odoo}"
+POSTGRES_PASSWORD="${POSTGRES_PASSWORD:-odoo}"
 
 odoo_shell() {
   local py="$1"
@@ -43,7 +44,6 @@ grant_his_access() {
   odoo_shell "
 u = env['res.users'].search([('login', '=', '${login}')], limit=1) or env['res.users'].search([('email', '=', '${login}')], limit=1)
 assert u, 'User not found: ${login}'
-imd = env['ir.model.data']
 xmlids = [
     'waran_his_core.group_waran_admin',
     'waran_his_core.group_waran_registration',
@@ -53,9 +53,17 @@ xmlids = [
     'waran_his_pharmacy.group_waran_pharmacy',
     'waran_his_billing.group_waran_billing',
 ]
-groups = [g for g in (imd.xmlid_to_object(x) for x in xmlids) if g]
-u.write({'groups_id': [(6, 0, [g.id for g in groups])]})
-print('Granted HIS groups to', u.login, [getattr(g, 'xml_id', None) for g in groups])
+groups = []
+for xid in xmlids:
+    try:
+        g = env.ref(xid)
+        if g:
+            groups.append(g.id)
+    except ValueError:
+        pass
+assert groups, 'No HIS groups found by XMLID'
+u.write({'groups_id': [(6, 0, groups)]})
+print('Granted HIS groups to', u.login, groups)
 "
 }
 
