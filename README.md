@@ -27,6 +27,21 @@ Set `OPENAI_API_KEY` in `docker/.env` to enable AI features.
 - Grant department access: `scripts/his_admin.sh grant-access cfwaran@gmail.com`
 - Upgrade all modules: `scripts/his_admin.sh upgrade-all`
 
+### Operations
+```bash
+# install all departments
+scripts/his_admin.sh install-all
+
+# upgrade just Lab & Pharmacy
+scripts/his_admin.sh upgrade waran_his_lab waran_his_pharmacy
+
+# resolve queued modules
+scripts/his_admin.sh resolve-queued
+
+# follow logs (UTF-8 fixed in docker-compose)
+scripts/his_admin.sh logs
+```
+
 ## Upgrade
 
 ```bash
