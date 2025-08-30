@@ -20,6 +20,12 @@ Visit [http://localhost:10069](http://localhost:10069) and install modules as ab
 
 Set `OPENAI_API_KEY` in `docker/.env` to enable AI features.
 
+## Quick Admin Tasks
+
+- Install all modules: `scripts/his_admin.sh install-all`
+- Set a password: `scripts/his_admin.sh set-password admin admin123`
+- Grant department access: `scripts/his_admin.sh grant-access cfwaran@gmail.com`
+
 ## Modules
 - Core patient management and encounters
 - Laboratory orders and results
