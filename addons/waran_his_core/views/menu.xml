@@ -17,4 +17,9 @@
             parent="waran_menu_registration"
             action="waran_his_core.waran_patient_action"
             sequence="10"/>
+  <!-- Add a Settings menu id that other modules (AI) can reference -->
+  <menuitem id="waran_menu_settings"
+            name="Settings"
+            parent="waran_menu_root"
+            sequence="90"/>
 </odoo>
