@@ -1,3 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="waran_menu_ai" name="AI Settings" parent="waran_his_core.waran_menu_settings" action="waran_ai_settings_action"/>
+    <record id="waran_ai_settings_action" model="ir.actions.act_window">
+        <field name="name">AI Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'waran_his_ai'}</field>
+    </record>
+
+    <menuitem id="waran_menu_ai"
+              name="AI Settings"
+              parent="waran_his_core.waran_menu_settings"
+              action="waran_ai_settings_action"
+              sequence="10"/>
 </odoo>

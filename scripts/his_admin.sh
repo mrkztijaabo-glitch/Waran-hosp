@@ -11,10 +11,13 @@ POSTGRES_PASSWORD="${POSTGRES_PASSWORD:-${POSTGRES_PASSWORD:-odoo}}"
 ODOO_DB="${POSTGRES_DB}"
 
 odoo_shell() {
-  docker compose run --rm odoo \
-    odoo -d "${ODOO_DB}" \
-    --db_host=db --db_user="${POSTGRES_USER}" --db_password="${POSTGRES_PASSWORD}" \
-    shell -c "$1"
+  local py="$1"
+  docker compose run --rm odoo bash -lc "
+odoo shell -d "${ODOO_DB}" \
+  --db_host=db --db_user="${POSTGRES_USER}" --db_password="${POSTGRES_PASSWORD}" <<'PY'
+${py}
+PY
+"
 }
 
 install_modules() {
@@ -28,31 +31,31 @@ set_password() {
   local login="$1"
   local password="$2"
   odoo_shell "
- u = env['res.users'].search([('login', '=', '${login}')], limit=1) or env['res.users'].search([('email', '=', '${login}')], limit=1)
- assert u, 'User not found: ${login}'
- u.write({'password': '${password}'})
- print('Password set for', u.login)
+u = env['res.users'].search([('login', '=', '${login}')], limit=1) or env['res.users'].search([('email', '=', '${login}')], limit=1)
+assert u, 'User not found: ${login}'
+u.write({'password': '${password}'})
+print('Password set for', u.login)
 "
 }
 
 grant_his_access() {
   local login="$1"
   odoo_shell "
- u = env['res.users'].search([('login', '=', '${login}')], limit=1) or env['res.users'].search([('email', '=', '${login}')], limit=1)
- assert u, 'User not found: ${login}'
- imd = env['ir.model.data']
- xmlids = [
-     'waran_his_core.group_waran_admin',
-     'waran_his_core.group_waran_registration',
-     'waran_his_core.group_waran_clinical_doctor',
-     'waran_his_core.group_waran_clinical_nurse',
-     'waran_his_lab.group_waran_lab',
-     'waran_his_pharmacy.group_waran_pharmacy',
-     'waran_his_billing.group_waran_billing',
- ]
- groups = [imd.xmlid_to_object(x) for x in xmlids if imd.xmlid_to_object(x)]
- u.write({'groups_id': [(6, 0, [g.id for g in groups if g])]})
- print('Granted HIS groups to', u.login, [g.xml_id for g in groups if g])
+u = env['res.users'].search([('login', '=', '${login}')], limit=1) or env['res.users'].search([('email', '=', '${login}')], limit=1)
+assert u, 'User not found: ${login}'
+imd = env['ir.model.data']
+xmlids = [
+    'waran_his_core.group_waran_admin',
+    'waran_his_core.group_waran_registration',
+    'waran_his_core.group_waran_clinical_doctor',
+    'waran_his_core.group_waran_clinical_nurse',
+    'waran_his_lab.group_waran_lab',
+    'waran_his_pharmacy.group_waran_pharmacy',
+    'waran_his_billing.group_waran_billing',
+]
+groups = [g for g in (imd.xmlid_to_object(x) for x in xmlids) if g]
+u.write({'groups_id': [(6, 0, [g.id for g in groups])]})
+print('Granted HIS groups to', u.login, [getattr(g, 'xml_id', None) for g in groups])
 "
 }
 
@@ -93,3 +96,4 @@ case "${1:-}" in
     exit 1
     ;;
 esac
+
