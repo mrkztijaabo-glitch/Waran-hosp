@@ -86,6 +86,9 @@ Usage:
   scripts/his_admin.sh resolve-queued
       -> runs '-u all --stop-after-init' once to clear queued installs
 
+  scripts/his_admin.sh ensure-menus
+      -> ensures HIS models have actions and menus
+
   scripts/his_admin.sh odoo "<raw args>"
       -> pass raw args to 'odoo' inside the container (advanced)
 
@@ -125,6 +128,15 @@ case "${cmd}" in
     ;;
   resolve-queued)
     odoo_cmd -u all --stop-after-init
+    ;;
+  ensure-menus)
+    cat "$ROOT/scripts/ensure_menus.py" | \
+      dc run --rm -T \
+        -e POSTGRES_DB="$DB" \
+        -e POSTGRES_USER="$DB_USER" \
+        -e POSTGRES_PASSWORD="$DB_PASS" \
+        -e PGHOST=db -e PGPORT=5432 \
+        odoo python -
     ;;
   odoo)
     [ "$#" -ge 1 ] || { echo 'Usage: scripts/his_admin.sh odoo "<raw args>"'; exit 1; }
