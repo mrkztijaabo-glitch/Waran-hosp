@@ -89,6 +89,9 @@ Usage:
   scripts/his_admin.sh ensure-menus
       -> ensures HIS models have actions and menus
 
+  scripts/his_admin.sh db-fix-and-menus
+      -> resets DB password, verifies connectivity and ensures menus
+
   scripts/his_admin.sh odoo "<raw args>"
       -> pass raw args to 'odoo' inside the container (advanced)
 
@@ -106,6 +109,7 @@ Examples:
   scripts/his_admin.sh resolve-queued
   scripts/his_admin.sh odoo "-u all --stop-after-init"
   scripts/his_admin.sh logs
+  scripts/his_admin.sh db-fix-and-menus
 EOF
 }
 
@@ -137,6 +141,9 @@ case "${cmd}" in
         -e POSTGRES_PASSWORD="$DB_PASS" \
         -e PGHOST=db -e PGPORT=5432 \
         odoo python -
+    ;;
+  db-fix-and-menus)
+    "$ROOT/scripts/db_fix_and_menus.sh"
     ;;
   odoo)
     [ "$#" -ge 1 ] || { echo 'Usage: scripts/his_admin.sh odoo "<raw args>"'; exit 1; }
