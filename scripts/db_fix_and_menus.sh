@@ -49,7 +49,7 @@ SQL="DO \$\$ BEGIN
           END IF;
         END \$\$;"
 
-if ! dc exec -T -u postgres db psql -v ON_ERROR_STOP=1 -U postgres -d postgres -c "$SQL"; then
+if ! dc exec -T db psql -U "$POSTGRES_USER" -d postgres -v ON_ERROR_STOP=1 -c "$SQL"; then
   hint
   exit 1
 fi
@@ -61,7 +61,7 @@ if ! dc exec -T odoo bash -lc "PGPASSWORD='${POSTGRES_PASSWORD}' psql -h db -p 5
   hint
   exit 1
 fi
-echo "✅ DB connectivity OK (odoo -> db)"
+echo "✅ DB connectivity OK (odoo → db)"
 
 # Ensure menus/actions
 ENSURE_SCRIPT="$ROOT/scripts/ensure_menus.py"
