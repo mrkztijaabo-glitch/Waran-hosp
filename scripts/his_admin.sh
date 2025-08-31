@@ -90,7 +90,10 @@ Usage:
       -> ensures HIS models have actions and menus
 
   scripts/his_admin.sh db-fix-and-menus
-      -> resets DB password, verifies connectivity and ensures menus
+      -> resets DB password (inside db container), verifies connectivity (from odoo), and ensures menus/actions
+
+  scripts/his_admin.sh fix-db-and-menus
+      -> alias of db-fix-and-menus
 
   scripts/his_admin.sh odoo "<raw args>"
       -> pass raw args to 'odoo' inside the container (advanced)
@@ -142,7 +145,7 @@ case "${cmd}" in
         -e PGHOST=db -e PGPORT=5432 \
         odoo python -
     ;;
-  db-fix-and-menus)
+  db-fix-and-menus|fix-db-and-menus)
     "$ROOT/scripts/db_fix_and_menus.sh"
     ;;
   odoo)
